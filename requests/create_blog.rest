@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/blogs
+content-type: application/json
+
+{
+    "title": "How to write a blog post",
+    "author": "Jimmy Fletcher",
+    "url": "https://blogposts.com/write-blog-post",
+    "likes": 5
+}

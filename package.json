@@ -1,0 +1,18 @@
+{
+  "name": "bloglist",
+  "version": "1.0.0",
+  "description": "Blog List application for part 4 of Fullstack open course",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.0"
+  }
+}
