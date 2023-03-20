@@ -1,1 +1,2 @@
 GET http://localhost:3003/api/blogs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpIb3BraW5zIiwiaWQiOiI2NDE3MTdjNGQ3ODQ0NzUwOTVkYjE4N2MiLCJpYXQiOjE2NzkyMzU4NTZ9.UIdc2xr5TLqCVNSMnRWjmgBeBMSPD83epTA4Si572nA

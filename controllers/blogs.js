@@ -3,12 +3,17 @@ const blogsRouter = express.Router()
 const Blog = require('../models/blog')
 
 blogsRouter.get('/', async (request, response) => {
-    const blogs = await Blog.find({})
+    const blogs = await Blog.find({}).populate('user')
     response.json(blogs)
 })
 
 blogsRouter.post('/', async (request, response) => {
-    const blog = new Blog(request.body)
+    const body = request.body
+
+    const blog = new Blog({
+        ...body,
+        user: request.user.id
+    })
 
     if (blog.likes === undefined) {
         blog.likes = 0
@@ -23,23 +28,32 @@ blogsRouter.post('/', async (request, response) => {
 })
 
 blogsRouter.delete('/:id', async (request, response) => {
-    await Blog.findByIdAndRemove(request.params.id)
+    const blog = await Blog.findById(request.params.id)
+    if (blog.user.toString() !== request.user.id.toString()) {
+        return response.status(401).json({ error: 'user not authorized' })
+    }
+
+    await blog.remove()
     response.status(204).end()
 })
 
 blogsRouter.put('/:id', async (request, response) => {
+    const blog = await Blog.findById(request.params.id)
+    if (blog.user.toString() !== request.user.id.toString()) {
+        return response.status(401).json({ error: 'user not authorized' })
+    }
     const body = request.body
 
     const { title, author, url, likes } = body
 
-    const blog = {
+    const blogToUpdate = {
         title,
         author,
         url,
         likes
     }
 
-    const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
+    const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blogToUpdate, { new: true })
     response.json(updatedBlog)
 })
 

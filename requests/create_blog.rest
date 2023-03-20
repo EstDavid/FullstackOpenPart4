@@ -1,9 +1,10 @@
 POST http://localhost:3003/api/blogs
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkpIb3BraW5zIiwiaWQiOiI2NDE3MTdjNGQ3ODQ0NzUwOTVkYjE4N2MiLCJpYXQiOjE2NzkyMzU4NTZ9.UIdc2xr5TLqCVNSMnRWjmgBeBMSPD83epTA4Si572nA
 
 {
-    "title": "How to write a blog post",
-    "author": "Jimmy Fletcher",
-    "url": "https://blogposts.com/write-blog-post",
-    "likes": 5
+    "title": "How to become a sports star",
+    "author": "John Hopkins",
+    "url": "https://blogposts.com/become-sports-star",
+    "likes": 3
 }
