@@ -28,7 +28,8 @@ blogsRouter.post('/', async (request, response) => {
 })
 
 blogsRouter.delete('/:id', async (request, response) => {
-    const blog = await Blog.findById(request.params.id)
+    const blog = await Blog.findById(request.params.id.toString())
+
     if (blog.user.toString() !== request.user.id.toString()) {
         return response.status(401).json({ error: 'user not authorized' })
     }
@@ -38,7 +39,7 @@ blogsRouter.delete('/:id', async (request, response) => {
 })
 
 blogsRouter.put('/:id', async (request, response) => {
-    const blog = await Blog.findById(request.params.id)
+    const blog = await Blog.findById(request.params.id.toString())
     if (blog.user.toString() !== request.user.id.toString()) {
         return response.status(401).json({ error: 'user not authorized' })
     }
@@ -53,7 +54,7 @@ blogsRouter.put('/:id', async (request, response) => {
         likes
     }
 
-    const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blogToUpdate, { new: true })
+    const updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blogToUpdate, { new: true }).populate('user')
     response.json(updatedBlog)
 })
 
